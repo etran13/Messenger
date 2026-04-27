@@ -21,7 +21,7 @@ def recieve(socket):
         if not data: #Check if the message is empty; exit if so
             print("Recieved empty")
             #conn.close()
-            os._exit()
+            os._exit(0)
         print(f"Recieved: {data.decode()}")
 
 if __name__ == "__main__":
