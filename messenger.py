@@ -9,7 +9,7 @@ def send(socket):
     while True:
         print("Sending loop entered")
         messageToSend = input("") #Block until input is recieved
-        socket.sendall(messageToSend) #Send the message using the socket connection that was passed in
+        socket.sendall(messageToSend.encode()) #Send the message using the socket connection that was passed in
 
 def recieve(socket):
     print("Starting recieve")
@@ -19,7 +19,7 @@ def recieve(socket):
         data = socket.recv(1024) #block until recieved
         if not data: #Check if the message is empty; exit if so
             print("Recieved empty")
-            conn.close()
+            #conn.close()
             sys.exit()
         print(f"Recieved: {data.decode()}")
 
