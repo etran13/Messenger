@@ -11,7 +11,7 @@ def send(socket):
         print("Sending loop entered")
         try:
             messageToSend = input("") #Block until input is recieved
-        except KeyboardInterrupt:
+        except EOFError:
             os._exit(1)
         socket.sendall(messageToSend.encode()) #Send the message using the socket connection that was passed in
 
