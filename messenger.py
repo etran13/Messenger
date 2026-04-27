@@ -50,7 +50,8 @@ if __name__ == "__main__":
         conn.connect((hostIP, portNum)) 
 
     #Start chat loop by spawning in sending thread and recieving/printing thread
-    recieve(conn) #Begin recieving
+    
     sendingThread = threading.Thread(target=send, args=(conn))
     sendingThread.start() #Begin sending
     print(sendingThread)
+    recieve(conn) #Begin recieving
