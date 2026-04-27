@@ -18,6 +18,7 @@ def recieve(socket):
         print("Recv loop entered")
         data = socket.recv(1024) #block until recieved
         if not data: #Check if the message is empty; exit if so
+            print("Recieved empty")
             conn.close()
             sys.exit()
         print(f"Recieved: {data.decode()}")
