@@ -3,6 +3,7 @@
 import sys
 import socket
 import threading
+import os
 
 def send(socket):
     print("Starting send")
@@ -20,7 +21,7 @@ def recieve(socket):
         if not data: #Check if the message is empty; exit if so
             print("Recieved empty")
             #conn.close()
-            sys.exit()
+            os._exit()
         print(f"Recieved: {data.decode()}")
 
 if __name__ == "__main__":
