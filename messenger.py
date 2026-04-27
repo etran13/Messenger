@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
     #Start chat loop by spawning in sending thread and recieving/printing thread
     
-    sendingThread = threading.Thread(target=(send), args=(conn))
+    sendingThread = threading.Thread(target=send, args=(conn), kwargs={})
     sendingThread.start() #Begin sending
     print(sendingThread)
     recieve(conn) #Begin recieving
