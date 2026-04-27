@@ -55,13 +55,13 @@ if __name__ == "__main__":
             print(f"Server listening on address {hostIP}, port {portNum}")
 
             conn, addr = initialServer.accept() #Block until a client connects
-            print(conn)
+            #print(conn)
 
     else: #Client setup
         portNum = int(argument1) 
         conn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-        print(conn)
+        #print(conn)
         conn.connect((hostIP, portNum)) 
 
     #Start chat loop by spawning in sending thread and recieving/printing thread
