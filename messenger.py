@@ -18,6 +18,7 @@ def recieve(socket):
         print("Recv loop entered")
         data = socket.recv(1024) #block until recieved
         if not data: #Check if the message is empty; exit if so
+            conn.close()
             sys.exit()
         print(f"Recieved: {data.decode()}")
 
@@ -51,7 +52,7 @@ if __name__ == "__main__":
 
     #Start chat loop by spawning in sending thread and recieving/printing thread
     
-    sendingThread = threading.Thread(target=send, args=(conn), kwargs={})
+    sendingThread = threading.Thread(target=send, args=(conn,), kwargs={})
     sendingThread.start() #Begin sending
     print(sendingThread)
     recieve(conn) #Begin recieving
