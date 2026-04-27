@@ -5,13 +5,17 @@ import socket
 import threading
 
 def send(socket):
+    print("Starting send")
     while True:
+        print("Sending loop entered")
         messageToSend = input("") #Block until input is recieved
         socket.sendall(messageToSend) #Send the message using the socket connection that was passed in
 
 def recieve(socket):
+    print("Starting recieve")
     data = None
     while True:
+        print("Recv loop entered")
         data = socket.recv(1024) #block until recieved
         if not data: #Check if the message is empty; exit if so
             sys.exit()
@@ -36,6 +40,7 @@ if __name__ == "__main__":
             print(f"Server listening on address {hostIP}, port {portNum}")
 
             conn, addr = initialServer.accept() #Block until a client connects
+            print(conn)
 
     else: #Client setup
         portNum = int(argument1) 
