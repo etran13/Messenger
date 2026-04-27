@@ -7,9 +7,9 @@ import os
 
 def send(socket):
     "Given a socket, this function sends user input through the socket until the user hits CTRL-D."
-    print("Starting send")
+    #print("Starting send")
     while True:
-        print("Sending loop entered")
+        #print("Sending loop entered")
         try:
             messageToSend = input("") #Block until input is recieved
         except EOFError:
@@ -18,10 +18,10 @@ def send(socket):
 
 def recieve(socket):
     "Given a socket, this function repeatedly receives messages transmitted through it until the user calls a keyboard interrupt or the process on the other side sends an empty message."
-    print("Starting receive")
+    #print("Starting receive")
     data = None
     while True:
-        print("Recv loop entered")
+        #print("Recv loop entered")
         try:
             data = socket.recv(1024) #block until recieved
         except KeyboardInterrupt:
@@ -68,5 +68,5 @@ if __name__ == "__main__":
     
     sendingThread = threading.Thread(target=send, args=(conn,), kwargs={})
     sendingThread.start() #Begin sending
-    print(sendingThread)
+    #print(sendingThread)
     recieve(conn) #Begin recieving
