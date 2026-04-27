@@ -53,3 +53,4 @@ if __name__ == "__main__":
     recieve(conn) #Begin recieving
     sendingThread = threading.Thread(target=send, args=(conn))
     sendingThread.start() #Begin sending
+    print(sendingThread)
