@@ -9,7 +9,10 @@ def send(socket):
     print("Starting send")
     while True:
         print("Sending loop entered")
-        messageToSend = input("") #Block until input is recieved
+        try:
+            messageToSend = input("") #Block until input is recieved
+        except KeyboardInterrupt:
+            os._exit(1)
         socket.sendall(messageToSend.encode()) #Send the message using the socket connection that was passed in
 
 def recieve(socket):
