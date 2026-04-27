@@ -6,26 +6,35 @@ import threading
 import os
 
 def send(socket):
+    "Given a socket, this function sends user input through the socket until the user hits CTRL-D."
     print("Starting send")
     while True:
         print("Sending loop entered")
         try:
             messageToSend = input("") #Block until input is recieved
         except EOFError:
-            os._exit(1)
+            shutdown()
         socket.sendall(messageToSend.encode()) #Send the message using the socket connection that was passed in
 
 def recieve(socket):
-    print("Starting recieve")
+    "Given a socket, this function repeatedly receives messages transmitted through it until the user calls a keyboard interrupt or the process on the other side sends an empty message."
+    print("Starting receive")
     data = None
     while True:
         print("Recv loop entered")
-        data = socket.recv(1024) #block until recieved
+        try:
+            data = socket.recv(1024) #block until recieved
+        except KeyboardInterrupt:
+            shutdown()
         if not data: #Check if the message is empty; exit if so
-            print("Recieved empty")
-            #conn.close()
-            os._exit(0)
+            shutdown()
         print(f"Recieved: {data.decode()}")
+
+def shutdown():
+    "This function prints a message to close the socket connection and terminate the program."
+    print("Shutting down!")
+    conn.close()
+    os._exit(0)
 
 if __name__ == "__main__":
     #Check command line arguments; if -l present do server setup before creating client socket
